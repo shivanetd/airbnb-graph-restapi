@@ -1,0 +1,102 @@
+type ReviewScores {
+  review_scores_accuracy: String
+  review_scores_cleanliness: String
+  review_scores_checkin: String
+  review_scores_communication: String
+  review_scores_location: String
+  review_scores_value: String
+  review_scores_rating: String
+}
+
+type Availability {
+  availability_30: String
+  availability_60: String
+  availability_90: String
+  availability_365: String
+}
+
+type Location {
+  type: String
+  is_location_exact: Boolean
+  coordinates: [String]
+}
+
+type Address {
+  street: String
+  suburb: String
+  government_area: String
+  market: String
+  country: String
+  country_code: String
+  location: Location
+}
+
+type Host {
+  host_id: ID
+  host_url: String
+  host_name: String
+  host_location: String
+  host_about: String
+  host_thumbnail_url: String
+  host_picture_url: String
+  host_neighbourhood: String
+  host_response_rate: String
+  host_is_superhost: String
+  host_has_profile_pic: String
+  host_identity_verified: String
+  host_listings_count: String
+  host_total_listings_count: String
+  host_verifications: [String]
+}
+
+type Images {
+  thumbnail_url: String
+  medium_url: String
+  picture_url: String
+  xl_picture_url: String
+}
+
+type AirbnbListing {
+  _id: ID
+  listing_url: String
+  name: String
+  summary: String
+  space: String
+  description: String
+  neighborhood_overview: String
+  notes: String
+  transit: String
+  access: String
+  interaction: String
+  house_rules: String
+  property_type: String
+  room_type: String
+  bed_type: String
+  minimum_nights: String
+  maximum_nights: String
+  cancellation_policy: String
+  last_scraped: String
+  calendar_last_scraped: String
+  accommodates: Int
+  bedrooms: Int
+  beds: Int
+  number_of_reviews: Int
+  bathrooms: Int
+  guests_included: Int
+  price: Int
+  extra_people: Int
+  reviews: [String]
+  review_scores: ReviewScores
+  availability: Availability
+  address: Address
+  host: Host
+  images: Images
+  amenities: [String]
+}
+
+
+type Query {
+  airbnbListings: [AirbnbListing]
+  airbnbListingById(id: ID!): AirbnbListing
+  # airbnbListingsByNumofBeds(beds: Int!): [AirbnbListing]
+}
