@@ -14,7 +14,7 @@ import com.shiva.airbingraphqlapi.repository.AirBnBListingRepository;
 @RestController
 public class ListingController {
   
-  private AirBnBListingRepository airBnBListingRepository;
+  private final AirBnBListingRepository airBnBListingRepository;
 
   public ListingController(AirBnBListingRepository airBnBListingRepository) {
     this.airBnBListingRepository = airBnBListingRepository;

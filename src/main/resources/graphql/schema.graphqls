@@ -96,7 +96,7 @@ type AirbnbListing {
 
 
 type Query {
-  airbnbListings: [AirbnbListing]
+  airbnbListings(page: Int!, size: Int!): [AirbnbListing]
   airbnbListingById(id: ID!): AirbnbListing
-  # airbnbListingsByNumofBeds(beds: Int!): [AirbnbListing]
+  airbnbListingsByNumofBeds(beds: Int!): [AirbnbListing]
 }
