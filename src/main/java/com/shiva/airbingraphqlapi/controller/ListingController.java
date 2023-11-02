@@ -1,5 +1,6 @@
 package com.shiva.airbingraphqlapi.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,14 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shiva.airbingraphqlapi.model.ListingsAndReview;
 import com.shiva.airbingraphqlapi.repository.AirBnBListingRepository;
+import com.shiva.airbingraphqlapi.service.weather.WeatherService;
+import com.shiva.airbingraphqlapi.service.weather.model.WeatherResponse;
 
 @RestController
 public class ListingController {
   
   private final AirBnBListingRepository airBnBListingRepository;
+  private final WeatherService weatherService;
 
-  public ListingController(AirBnBListingRepository airBnBListingRepository) {
+  public ListingController(AirBnBListingRepository airBnBListingRepository, WeatherService weatherService) {
     this.airBnBListingRepository = airBnBListingRepository;
+    this.weatherService = weatherService;
   }
 
   @GetMapping("/listings")
@@ -33,4 +38,10 @@ public class ListingController {
   public @GetMapping("/listings/bed") List<ListingsAndReview> getListingGreaterThan(@RequestParam("beds") int beds) {
     return airBnBListingRepository.findByBedsGreaterThan(beds);
   }
+
+  @GetMapping("/wether")
+  public Optional<WeatherResponse> getWeather(@RequestParam("latLong") String latLong){
+    return weatherService.getCurrentWeatherByLatLong(latLong);
+  }
+
 }
