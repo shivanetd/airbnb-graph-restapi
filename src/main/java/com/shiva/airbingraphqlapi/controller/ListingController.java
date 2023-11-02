@@ -39,8 +39,8 @@ public class ListingController {
   }
 
   @GetMapping("/wether")
-  public List<WeatherResponse> getWeather(@RequestParam("latLong") String latLong){
-    return weatherService.getCurrentWeatherByLatLong(latLong);
+  public Optional<WeatherResponse> getWeather(@RequestParam("lat") String lat,@RequestParam("long") String longitude){
+    return weatherService.getCurrentWeatherByLatLong(lat,longitude);
   }
 
 }

@@ -15,6 +15,7 @@ import com.shiva.airbingraphqlapi.service.weather.WeatherService;
 import com.shiva.airbingraphqlapi.service.weather.model.LocationResponse;
 import com.shiva.airbingraphqlapi.service.weather.model.WeatherResponse;
 
+import java.util.Optional;
 import retrofit2.Response;
 
 
@@ -33,10 +34,10 @@ public class AccuWeatherServiceImpl implements WeatherService {
     }
 
     @Override
-    public List<WeatherResponse> getCurrentWeatherByLatLong(String latLong){
-        List<WeatherResponse> res = null;
+    public Optional<WeatherResponse> getCurrentWeatherByLatLong(String lat, String longitude){
+        Optional<WeatherResponse> res = null;
         try{
-            Response<LocationResponse> locationResponse = accWeatherRepository.getLocationKey(apiKey, latLong).execute();
+            Response<LocationResponse> locationResponse = accWeatherRepository.getLocationKey(apiKey, lat).execute();
 
             if(!locationResponse.isSuccessful()){
                 logger.error("failed fetching location key from accuweather");
@@ -49,7 +50,7 @@ public class AccuWeatherServiceImpl implements WeatherService {
             if(!waResponse.isSuccessful())
                 logger.error("failed fetching current condition from accuweather");
 
-            res = waResponse.body();
+            return waResponse.body().stream().findFirst();
         }catch(IOException exception){
             logger.error("Exception during fetch, message:- {}", exception.getMessage(), exception);
         }

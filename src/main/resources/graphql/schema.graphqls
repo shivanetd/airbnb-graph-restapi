@@ -19,6 +19,13 @@ type Location {
   type: String
   is_location_exact: Boolean
   coordinates: [String]
+  weather: Weather
+}
+
+type Weather {
+  weatherText: String
+  temperature: String
+  unit: String
 }
 
 type Address {
