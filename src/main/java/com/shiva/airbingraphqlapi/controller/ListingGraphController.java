@@ -42,12 +42,10 @@ public class ListingGraphController {
   }
 
   @SchemaMapping
-  public Weather wather(Location location){
+  public Weather weather(Location location){
     Optional<WeatherResponse> waResponse = weatherService.getCurrentWeatherByLatLong(location.getLat(), location.getLong());
     if(waResponse.isPresent())
-      return new Weather(waResponse.get().getWeatherText(), 
-        waResponse.get().getTemperature().getImperial().getValue(),
-        waResponse.get().getTemperature().getImperial().getUnit());
+      return waResponse.get().toWeather();
     
     return null;
   }

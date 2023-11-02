@@ -37,7 +37,7 @@ public class AccuWeatherServiceImpl implements WeatherService {
     public Optional<WeatherResponse> getCurrentWeatherByLatLong(String lat, String longitude){
         Optional<WeatherResponse> res = null;
         try{
-            Response<LocationResponse> locationResponse = accWeatherRepository.getLocationKey(apiKey, lat).execute();
+            Response<LocationResponse> locationResponse = accWeatherRepository.getLocationKey(apiKey, String.format("%s,%s",lat, longitude)).execute();
 
             if(!locationResponse.isSuccessful()){
                 logger.error("failed fetching location key from accuweather");

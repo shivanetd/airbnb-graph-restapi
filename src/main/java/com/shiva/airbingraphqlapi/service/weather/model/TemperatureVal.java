@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TemperatureVal {
-    private Float value;
-    private String unit;
-    private Integer unitType;
+    private Float Value;
+    private String Unit;
+    private Integer UnitType;
 }
