@@ -1,7 +1,7 @@
 package com.shiva.airbingraphqlapi.service.weather.impl;
 
 import java.io.IOException;
-import java.util.Optional;
+import java.util.List;
 
 import javax.swing.text.html.Option;
 
@@ -33,8 +33,8 @@ public class AccuWeatherServiceImpl implements WeatherService {
     }
 
     @Override
-    public Optional<WeatherResponse> getCurrentWeatherByLatLong(String latLong){
-        Optional<WeatherResponse> res = Optional.empty();
+    public List<WeatherResponse> getCurrentWeatherByLatLong(String latLong){
+        List<WeatherResponse> res = null;
         try{
             Response<LocationResponse> locationResponse = accWeatherRepository.getLocationKey(apiKey, latLong).execute();
 
@@ -44,12 +44,12 @@ public class AccuWeatherServiceImpl implements WeatherService {
             }
             
 
-            Response<WeatherResponse> waResponse = accWeatherRepository.getCurrentWeatherCondition(locationResponse.body().getKey(), apiKey).execute();
+            Response<List<WeatherResponse>> waResponse = accWeatherRepository.getCurrentWeatherCondition(locationResponse.body().getKey(), apiKey).execute();
 
             if(!waResponse.isSuccessful())
                 logger.error("failed fetching current condition from accuweather");
 
-            res = Optional.of(waResponse.body());
+            res = waResponse.body();
         }catch(IOException exception){
             logger.error("Exception during fetch, message:- {}", exception.getMessage(), exception);
         }

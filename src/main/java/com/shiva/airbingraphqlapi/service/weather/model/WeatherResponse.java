@@ -6,14 +6,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class WeatherResponse {
-    private String localObservationDateTime;
-    private Integer epochTime;
-    private String weatherText;
-    private Integer weatherIcon;
-    private Boolean hasPrecipitation;
-    private Object precipitationType;
-    private Boolean isDayTime;
-    private Temperature temperature;
-    private String mobileLink;
-    private String link;
+    private String LocalObservationDateTime;
+    private Integer EpochTime;
+    private String WeatherText;
+    private Integer WeatherIcon;
+    private Boolean HasPrecipitation;
+    private Object PrecipitationType;
+    private Boolean IsDayTime;
+    private Temperature Temperature;
+    private String MobileLink;
+    private String Link;
     }

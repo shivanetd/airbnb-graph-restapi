@@ -1,11 +1,10 @@
 package com.shiva.airbingraphqlapi.service.weather;
 
-import java.io.IOException;
-import java.util.Optional;
+import java.util.List;
 
 import com.shiva.airbingraphqlapi.service.weather.model.WeatherResponse;
 
 public interface WeatherService {
 
-    Optional<WeatherResponse> getCurrentWeatherByLatLong(String latLong);
+    List<WeatherResponse> getCurrentWeatherByLatLong(String latLong);
 } 

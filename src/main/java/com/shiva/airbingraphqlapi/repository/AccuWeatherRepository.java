@@ -5,6 +5,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
+import java.util.List;
+
 import com.shiva.airbingraphqlapi.service.weather.model.LocationResponse;
 import com.shiva.airbingraphqlapi.service.weather.model.WeatherResponse;
 
@@ -16,5 +18,5 @@ public interface AccuWeatherRepository {
  
     
     @GET("currentconditions/v1/{locationKey}")
-    Call<WeatherResponse> getCurrentWeatherCondition(@Path("locationKey") String key, @Query("apikey") String apiKey);
+    Call<List<WeatherResponse>> getCurrentWeatherCondition(@Path("locationKey") String key, @Query("apikey") String apiKey);
 }

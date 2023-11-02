@@ -1,6 +1,5 @@
 package com.shiva.airbingraphqlapi.controller;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +39,7 @@ public class ListingController {
   }
 
   @GetMapping("/wether")
-  public Optional<WeatherResponse> getWeather(@RequestParam("latLong") String latLong){
+  public List<WeatherResponse> getWeather(@RequestParam("latLong") String latLong){
     return weatherService.getCurrentWeatherByLatLong(latLong);
   }
 
