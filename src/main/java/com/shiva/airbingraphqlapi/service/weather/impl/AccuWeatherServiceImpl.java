@@ -35,7 +35,7 @@ public class AccuWeatherServiceImpl implements WeatherService {
 
     @Override
     public Optional<WeatherResponse> getCurrentWeatherByLatLong(String lat, String longitude){
-        Optional<WeatherResponse> res = null;
+        Optional<WeatherResponse> res = Optional.empty();
         try{
             Response<LocationResponse> locationResponse = accWeatherRepository.getLocationKey(apiKey, String.format("%s,%s",lat, longitude)).execute();
 
