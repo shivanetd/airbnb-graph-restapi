@@ -1,11 +1,11 @@
-FROM gradle:8.3 AS build
+FROM gradle:8.14.4-jdk21 AS build
 
 COPY src/main ./src/main
 COPY build.gradle settings.gradle  ./
 
 RUN gradle clean build
 
-FROM openjdk:21-jdk-slim AS run
+FROM eclipse-temurin:21-jre AS run
 
 RUN adduser --system --group app-user
 
